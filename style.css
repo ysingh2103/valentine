@@ -5,21 +5,23 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Dancing Script', cursive;
-    
 }
 
-/* Body Styling */
-body {
-    background: url('images/background.jpg') no-repeat center center fixed;
-    background-size: cover;
+/* Unblurred Background */
+html, body {
+    width: 100%;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover; /* No blur, retains sharpness */
 }
-/* Ensure each page takes full screen height */
+
+/* Main Page Container */
 .page {
     width: 100vw;
     height: 100vh;
@@ -27,59 +29,93 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Center text */
-    position: absolute;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-
-/* Make only one page visible at a time */
-.page.active {
-    text-align: center; /* Center text */
-    opacity: 1;
-    z-index: 10;
-}
-
-/* Prevent page scrolling issue */
-html, body {
-    overflow: hidden;
-    width: 100%;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Page Styling with Card-Like Background */
-.page {
     text-align: center;
-    padding: 30px;
-    width: 90%;
-    max-width: 400px;
-    max-height: 500px;
-    transition: all 0.8s ease-in-out;
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: transparent; /* Remove blur overlay */
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    position: relative;
+    box-shadow: none; /* Remove any extra shadow */
+}
+/* Add a card container for text */
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px; /* Keeps text readable */
+    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-
-.hidden {
-    display: none;
-    opacity: 0;
-    transform: scale(0.8);
+/* GIF inside the card */
+.card .hug-gif {
+    width: 100%; /* Make it responsive */
+    max-width: 300px; /* Prevents overflow */
+    height: auto;
+    margin-bottom: 15px;
+    animation: popIn 1.2s ease-out;
+    border-radius: 10px; /* Makes it fit nicely inside the card */
 }
 
+/* Headings inside the card */
+.card h1 {
+    font-size: 2.5rem;
+    font-family: 'Great Vibes', cursive;
+    color: #ff4d6d;
+    text-shadow: 2px 2px 5px rgba(255, 0, 100, 0.3);
+    margin-bottom: 10px;
+}
+
+/* Paragraph inside the card */
+.card p {
+    font-size: 1.4rem;
+    font-family: 'Sacramento', cursive;
+    color: #333;
+}
+
+/* Pop-in Animation */
+@keyframes popIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .card {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .card h1 {
+        font-size: 2rem;
+    }
+
+    .card p {
+        font-size: 1.2rem;
+    }
+}
+
+
+/* Hidden Page */
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Fade-in Animation */
 .fade-in {
     animation: fadeIn 1s ease-in-out forwards;
 }
@@ -95,7 +131,7 @@ html, body {
     }
 }
 
-/* Styling for Text in a Card */
+/* Heading Styling */
 h1 {
     font-size: 2.8rem;
     font-family: 'Great Vibes', cursive;
@@ -105,6 +141,13 @@ h1 {
     text-align: center;
 }
 
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Paragraph Styling */
 p {
     font-size: 1.5rem;
     font-family: 'Sacramento', cursive;
@@ -113,13 +156,6 @@ p {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Heartbeat Animation */
-@keyframes heartbeat {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
 }
 
 /* Button Styling */
@@ -141,13 +177,13 @@ button:hover {
     box-shadow: 0 0 15px rgba(255, 71, 87, 0.7);
 }
 
+/* Button Container */
 .button-container {
     display: flex;
     justify-content: center;
     gap: 15px;
     width: 100%;
 }
-
 
 /* No Button Animation */
 #noButton {
@@ -162,14 +198,17 @@ button:hover {
     animation: fadeIn 1s ease-in-out;
 }
 
-
 /* Celebration Page Styling */
 #page3 {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 20px;
+    overflow: hidden;
 }
 
 /* Hugging Animation */
@@ -192,7 +231,22 @@ button:hover {
     }
 }
 
-/* Pop-up Animation for Yes Buttons */
+/* Yes Button Cloning - Pop One by One Covering Page */
+.yes-clone {
+    position: absolute;
+    background-color: #ff6b81;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    animation: popYes 0.8s ease-out forwards;
+    animation-delay: var(--delay); /* Spread timing */
+}
+
+/* Staggered Pop-up Animation */
 @keyframes popYes {
     0% {
         transform: scale(0);
@@ -203,30 +257,30 @@ button:hover {
         opacity: 1;
     }
 }
+
+/* Responsive Fixes for Mobile Screens */
 @media (max-width: 600px) {
+    .page {
+        width: 95vw; /* Ensure better scaling */
+        height: auto; /* Prevent cropping */
+        max-width: none;
+        padding: 15px;
+    }
+
     h1 {
         font-size: 2rem;
     }
+
     p {
         font-size: 1.2rem;
     }
+
     button {
         font-size: 1rem;
-        padding: 10px 20px;
+        padding: 12px 24px;
     }
-}
 
-
-.yes-clone {
-    position: absolute;
-    background-color: #ff6b81;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    animation: popYes 0.8s ease-out forwards;
-    transition: transform 0.2s ease;
-    animation-delay: var(--delay);
+    .hug-gif {
+        width: 250px;
+    }
 }
