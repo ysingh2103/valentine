@@ -67,7 +67,22 @@ function multiplyYesButtons() {
     
     /* Open the first page initially */
     showPage('page1');
+    const pages = document.querySelectorAll('.page');
+
+function showPage(nextPage) {
+    const currentPage = document.querySelector('.page.visible');
     
+    if (currentPage) {
+        currentPage.classList.remove('visible');
+        
+        // Wait for fade-out before showing the new page
+        setTimeout(() => {
+            nextPage.classList.add('visible');
+        }, 500); // Sync with CSS transition time
+    } else {
+        nextPage.classList.add('visible');
+    }
+}
     /* Handle page transitions */
     openButton.addEventListener('click', () => {
         showPage('page2');
@@ -76,5 +91,6 @@ function multiplyYesButtons() {
     yesButton.addEventListener('click', () => {
         showPage('page3');
     });
+    
     
 }
