@@ -13,7 +13,8 @@ openButton.addEventListener('click', () => {
 
 let noClickCount = 0;
 
-noButton.addEventListener('mouseover', () => {
+if (window.innerWidth > 768) // Only move on larger screens
+    noButton.addEventListener('mouseover', () => {
     if (noClickCount < 4) {
         noButton.style.position = 'absolute';
         noButton.style.top = `${Math.random() * 80 + 10}%`;
@@ -26,6 +27,7 @@ noButton.addEventListener('mouseover', () => {
         multiplyYesButtons();
         noOptionMessage.classList.remove('hidden');
     }
+    
 });
 
 noButton.addEventListener('click', () => {
@@ -83,6 +85,8 @@ function showPage(nextPage) {
         nextPage.classList.add('visible');
     }
 }
+
+
     /* Handle page transitions */
     openButton.addEventListener('click', () => {
         showPage('page2');

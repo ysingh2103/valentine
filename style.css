@@ -20,8 +20,9 @@ html, body {
     align-items: center;
     margin: 0;
     padding: 0;
-    background: url('images/background.jpg') no-repeat center center fixed;
-    background-size: cover; /* No blur, retains sharpness */
+    background: url('images/background.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: scroll;
 }
 
 /* Main Page Container */
