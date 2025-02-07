@@ -57,4 +57,24 @@ function multiplyYesButtons() {
             container.appendChild(newYes);
         }, i * 100); // Delay each button by 100ms
     }
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+    
+        document.getElementById(pageId).classList.add('active');
+    }
+    
+    /* Open the first page initially */
+    showPage('page1');
+    
+    /* Handle page transitions */
+    openButton.addEventListener('click', () => {
+        showPage('page2');
+    });
+    
+    yesButton.addEventListener('click', () => {
+        showPage('page3');
+    });
+    
 }
